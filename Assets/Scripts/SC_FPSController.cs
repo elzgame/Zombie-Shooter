@@ -89,6 +89,19 @@ public class SC_FPSController : MonoBehaviour
             if (hit.transform.tag == "Zombie")
             {
                 hit.transform.gameObject.GetComponent<Zombie>().zombieHealth -= weapon.damage;
+                moveDirection = hit.transform.gameObject.GetComponent<Rigidbody>().transform.position - transform.position;
+                moveDirection = new Vector3(moveDirection.x, moveDirection.y + 0.75f, moveDirection.z);
+                Debug.Log(moveDirection);
+                hit.transform.gameObject.GetComponent<Rigidbody>().AddForce(moveDirection.normalized * 50f);
+                // hit.transform.gameObject.GetComponent<Zombie>().animator.SetBool("Knockback", true);
+                // // if (hit.transform.gameObject.GetComponent<Zombie>().animator.GetCurrentAnimatorStateInfo(0).normalizedTime > 1)
+                // // { 
+                // //     hit.transform.gameObject.GetComponent<Zombie>().animator.SetBool("Knockback", false);
+                // // }
+                // // else
+                // // {
+                // //     Debug.Log("playing");
+                // // }
                 Debug.Log(hit.transform.name + " : " + hit.transform.gameObject.GetComponent<Zombie>().zombieHealth);
             }
         }

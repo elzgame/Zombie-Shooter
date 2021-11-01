@@ -9,7 +9,7 @@ public class Zombie : MonoBehaviour
     public int damage;
     public Transform player;
     private NavMeshAgent agent;
-    private Animator animator;
+    public Animator animator;
     private bool isAttacking;
     private bool isWalking;
     private bool isDying;

@@ -2149,6 +2149,10 @@ PrefabInstance:
       propertyPath: player
       value: 
       objectReference: {fileID: 3182327597820332749}
+    - target: {fileID: 412389118599997084, guid: 9ab0a999f726c3648a8181c3643db87f, type: 3}
+      propertyPath: zombieHealth
+      value: 1000
+      objectReference: {fileID: 0}
     - target: {fileID: 7279670326292499140, guid: 9ab0a999f726c3648a8181c3643db87f, type: 3}
       propertyPath: m_RootOrder
       value: 1
