@@ -26,7 +26,7 @@ public class Zombie : MonoBehaviour
     void Update()
     {
         var distance = Vector3.Distance(player.position, transform.position);
-        Debug.Log(distance);
+        // Debug.Log(distance);
         if (distance <= 2f && isAttacking == false && isDying == false)
         {
             isAttacking = true;
@@ -57,6 +57,13 @@ public class Zombie : MonoBehaviour
             animator.SetBool("Die", true);
             Debug.Log("Killed a zombie!");
         }
+
+        if (zombieHealth <= 0) 
+        {
+            animator.SetBool("Die", true);
+            Debug.Log("Killed a zombie!");
+        }
+
 
 
         if (isDying)

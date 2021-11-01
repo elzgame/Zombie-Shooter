@@ -22,6 +22,7 @@ public class SC_FPSController : MonoBehaviour
     [HideInInspector]
     public bool canMove = true;
     private bool isJumping;
+    public Weapon weapon;
 
     void Start()
     {
@@ -82,11 +83,15 @@ public class SC_FPSController : MonoBehaviour
     public void Shoot()
     {
         Debug.Log("Shooting!");
-        // RaycastHit hit;
-        // if (Physics.Raycast(playerCamera.transform.position, playerCamera.transform.forward, out hit))
-        // {
-        //     Debug.Log(hit.transform.name);
-        // }
+        RaycastHit hit;
+        if (Physics.Raycast(playerCamera.transform.position, playerCamera.transform.forward, out hit))
+        {
+            if (hit.transform.tag == "Zombie")
+            {
+                hit.transform.gameObject.GetComponent<Zombie>().zombieHealth -= weapon.damage;
+                Debug.Log(hit.transform.name + " : " + hit.transform.gameObject.GetComponent<Zombie>().zombieHealth);
+            }
+        }
     }
 
     public void Jump()
