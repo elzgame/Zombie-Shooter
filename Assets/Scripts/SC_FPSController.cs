@@ -21,6 +21,7 @@ public class SC_FPSController : MonoBehaviour
 
     [HideInInspector]
     public bool canMove = true;
+    private bool isJumping;
 
     void Start()
     {
@@ -46,12 +47,14 @@ public class SC_FPSController : MonoBehaviour
         float movementDirectionY = moveDirection.y;
         moveDirection = (forward * curSpeedX) + (right * curSpeedY);
 
-        if (Input.GetButton("Jump") && canMove && characterController.isGrounded)
+        if (isJumping && canMove && characterController.isGrounded)
         {
+            isJumping = false;
             moveDirection.y = jumpSpeed;
         }
         else
         {
+            isJumping = false;
             moveDirection.y = movementDirectionY;
         }
 
@@ -72,7 +75,18 @@ public class SC_FPSController : MonoBehaviour
             rotationX += -touchField.TouchDist.y * lookSpeed;
             rotationX = Mathf.Clamp(rotationX, -lookXLimit, lookXLimit);
             playerCamera.transform.localRotation = Quaternion.Euler(rotationX, 0, 0);
-            transform.rotation *= Quaternion.Euler(0, touchField.TouchDist.x * lookSpeed, 0); 
+            transform.rotation *= Quaternion.Euler(0, touchField.TouchDist.x * lookSpeed, 0);
         }
+    }
+
+    public void Shoot()
+    {
+        Debug.Log("Shooting!");
+    }
+
+    public void Jump()
+    {
+        isJumping = true;
+        Debug.Log("Jumping!");
     }
 }
