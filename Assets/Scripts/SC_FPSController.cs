@@ -82,6 +82,11 @@ public class SC_FPSController : MonoBehaviour
     public void Shoot()
     {
         Debug.Log("Shooting!");
+        // RaycastHit hit;
+        // if (Physics.Raycast(playerCamera.transform.position, playerCamera.transform.forward, out hit))
+        // {
+        //     Debug.Log(hit.transform.name);
+        // }
     }
 
     public void Jump()
