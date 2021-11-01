@@ -1028,6 +1028,24 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1113778649}
   m_CullTransparentMesh: 1
+--- !u!1 &1168626182 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1168626182, guid: 9ab0a999f726c3648a8181c3643db87f, type: 3}
+  m_PrefabInstance: {fileID: 7101100098758568967}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1168626185
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1168626182}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 309d52285f914c24bbbe7526032eaad2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  isHit: 0
 --- !u!1 &1170361871
 GameObject:
   m_ObjectHideFlags: 0
@@ -1606,24 +1624,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2052956665}
   m_CullTransparentMesh: 1
---- !u!1 &919132147859815545 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 7948085037926027390, guid: 9ab0a999f726c3648a8181c3643db87f, type: 3}
-  m_PrefabInstance: {fileID: 7101100098758568967}
-  m_PrefabAsset: {fileID: 0}
---- !u!65 &919132147859815546
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 919132147859815545}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 0.4376524, y: 1.7497979, z: 0.34886003}
-  m_Center: {x: -0.0049326634, y: 0.91751593, z: -0.0000004063953}
 --- !u!1 &3182327597179260343
 GameObject:
   m_ObjectHideFlags: 0
@@ -1719,9 +1719,10 @@ GameObject:
   - component: {fileID: 3182327597820332748}
   - component: {fileID: 3182327597820332747}
   - component: {fileID: 3182327597820332750}
+  - component: {fileID: 3182327597820332751}
   m_Layer: 3
   m_Name: Player
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1815,6 +1816,20 @@ MonoBehaviour:
   m_DefaultActionMap: Player
   m_SplitScreenIndex: -1
   m_Camera: {fileID: 0}
+--- !u!136 &3182327597820332751
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3182327597820332746}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  m_Radius: 0.5
+  m_Height: 1
+  m_Direction: 1
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &3182327597953394158
 GameObject:
   m_ObjectHideFlags: 0
@@ -1903,10 +1918,22 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1168626182, guid: 9ab0a999f726c3648a8181c3643db87f, type: 3}
+      propertyPath: m_Name
+      value: ZombieHand
+      objectReference: {fileID: 0}
+    - target: {fileID: 1168626184, guid: 9ab0a999f726c3648a8181c3643db87f, type: 3}
+      propertyPath: m_IsTrigger
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 412389118599997084, guid: 9ab0a999f726c3648a8181c3643db87f, type: 3}
       propertyPath: player
       value: 
       objectReference: {fileID: 3182327597820332749}
+    - target: {fileID: 412389118599997084, guid: 9ab0a999f726c3648a8181c3643db87f, type: 3}
+      propertyPath: zombieHand
+      value: 
+      objectReference: {fileID: 1168626182}
     - target: {fileID: 7279670326292499140, guid: 9ab0a999f726c3648a8181c3643db87f, type: 3}
       propertyPath: m_RootOrder
       value: 1

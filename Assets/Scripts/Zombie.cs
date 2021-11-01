@@ -13,6 +13,9 @@ public class Zombie : MonoBehaviour
     private bool isAttacking;
     private bool isWalking;
 
+    [SerializeField]
+    private GameObject zombieHand;
+
     void Start()
     {
         agent = GetComponent<NavMeshAgent>();
@@ -31,7 +34,9 @@ public class Zombie : MonoBehaviour
             animator.SetBool("Walk", false);
             animator.SetBool("Attack", true);
             Debug.Log("Attacking");
-        } else if(distance >= 2f) {
+        }
+        else if (distance >= 2f)
+        {
             isWalking = true;
         }
 
@@ -43,6 +48,7 @@ public class Zombie : MonoBehaviour
             agent.SetDestination(player.transform.position);
             animator.SetBool("Walk", true);
             animator.SetBool("Attack", false);
+            zombieHand.GetComponent<ZombieHand>().isHit = false;
         }
 
         if (Input.GetKeyDown(KeyCode.Space))
@@ -63,7 +69,10 @@ public class Zombie : MonoBehaviour
 
     public void ZombieAttack()
     {
-        PlayerStats.playerHealth -= damage;
+        if (zombieHand.GetComponent<ZombieHand>().isHit == true)
+        {
+            PlayerStats.playerHealth -= damage;
+        }
     }
 
     public void ZombieDie()
