@@ -12,7 +12,7 @@ public class Zombie : MonoBehaviour
     private Animator animator;
     private bool isAttacking;
     private bool isWalking;
-
+    private bool isDying;
     [SerializeField]
     private GameObject zombieHand;
 
@@ -27,7 +27,7 @@ public class Zombie : MonoBehaviour
     {
         var distance = Vector3.Distance(player.position, transform.position);
         Debug.Log(distance);
-        if (distance <= 2f && isAttacking == false)
+        if (distance <= 2f && isAttacking == false && isDying == false)
         {
             isAttacking = true;
             isWalking = false;
@@ -35,12 +35,13 @@ public class Zombie : MonoBehaviour
             animator.SetBool("Attack", true);
             Debug.Log("Attacking");
         }
-        else if (distance >= 2f)
+        else if (distance >= 2f && isDying == false)
         {
             isWalking = true;
+            isAttacking = false;
         }
 
-        if (isWalking)
+        if (isWalking && isAttacking == false && isDying == false)
         {
             isAttacking = false;
             isWalking = true;
@@ -51,16 +52,20 @@ public class Zombie : MonoBehaviour
             zombieHand.GetComponent<ZombieHand>().isHit = false;
         }
 
-        if (Input.GetKeyDown(KeyCode.Space))
-        {
-            ZombieAttack();
-            Debug.Log("Got hit!");
-        }
-
         if (Input.GetKeyDown(KeyCode.L))
         {
-            ZombieDie();
+            animator.SetBool("Die", true);
             Debug.Log("Killed a zombie!");
+        }
+
+
+        if (isDying)
+        {
+            agent.isStopped = true;
+            isWalking = false;
+            isAttacking = false;
+            animator.SetBool("Walk", false);
+            animator.SetBool("Attack", false);
         }
 
         transform.LookAt(player);
@@ -76,6 +81,11 @@ public class Zombie : MonoBehaviour
     }
 
     public void ZombieDie()
+    {
+        isDying = true;
+    }
+
+    public void ZombieDieMoney()
     {
         PlayerStats.playerMoney += zombieMoney;
     }
