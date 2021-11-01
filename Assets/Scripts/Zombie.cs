@@ -20,6 +20,7 @@ public class Zombie : MonoBehaviour
     {
         agent = GetComponent<NavMeshAgent>();
         animator = GetComponent<Animator>();
+        player = FindObjectOfType<SC_FPSController>().gameObject.transform;
         isWalking = true;
     }
 
@@ -58,7 +59,7 @@ public class Zombie : MonoBehaviour
             Debug.Log("Killed a zombie!");
         }
 
-        if (zombieHealth <= 0) 
+        if (zombieHealth <= 0)
         {
             animator.SetBool("Die", true);
             Debug.Log("Killed a zombie!");
