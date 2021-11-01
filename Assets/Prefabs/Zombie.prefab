@@ -1389,11 +1389,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9bc41fc18e0b7d64886d198862b67914, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  zombieHealth: 30
+  zombieHealth: 100
   zombieMoney: 20
   zombieSpeed: 1
   damage: 3
   player: {fileID: 0}
+  animator: {fileID: 0}
   zombieHand: {fileID: 1168626182}
 --- !u!195 &919132147859815546
 NavMeshAgent:
