@@ -88,6 +88,7 @@ public class Zombie : MonoBehaviour
     public void ZombieDieMoney()
     {
         PlayerStats.playerMoney += zombieMoney;
+        Destroy(this.gameObject);
     }
 
 }
