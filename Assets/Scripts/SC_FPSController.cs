@@ -82,6 +82,7 @@ public class SC_FPSController : MonoBehaviour
 
     public void Shoot()
     {
+        weapon.gameObject.GetComponent<Animator>().SetBool("Shoot", true);
         Debug.Log("Shooting!");
         RaycastHit hit;
         if (Physics.Raycast(playerCamera.transform.position, playerCamera.transform.forward, out hit))
