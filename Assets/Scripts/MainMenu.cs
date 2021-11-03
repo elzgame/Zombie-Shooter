@@ -6,14 +6,6 @@ public class MainMenu : MonoBehaviour
 {
     public GameObject difficultyPanel;
     public GameObject shopPanel;
-    public Text moneyText;
-    public int moneyPrefs;
-
-    void Start()
-    {
-        moneyPrefs = PlayerPrefs.GetInt("money", 0);
-    }
-
 
     public void SelectDifficulty()
     {
@@ -28,7 +20,6 @@ public class MainMenu : MonoBehaviour
     public void Shop()
     {
         shopPanel.SetActive(true);
-        moneyText.text = moneyPrefs.ToString();
     }
 
     public void CloseShop()
