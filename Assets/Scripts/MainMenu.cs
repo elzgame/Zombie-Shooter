@@ -7,6 +7,15 @@ public class MainMenu : MonoBehaviour
     public GameObject difficultyPanel;
     public GameObject shopPanel;
 
+    void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.Space))
+        {
+            PlayerPrefs.DeleteAll();
+            PlayerPrefs.SetInt("money", 999999999);
+        }
+    }
+
     public void SelectDifficulty()
     {
         difficultyPanel.gameObject.SetActive(true);
@@ -27,7 +36,7 @@ public class MainMenu : MonoBehaviour
         shopPanel.SetActive(false);
     }
 
-    
+
     public void Easy()
     {
         GamePrefs.levelSelected = "Easy";

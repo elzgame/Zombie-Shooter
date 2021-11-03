@@ -5,7 +5,6 @@ public class GamePrefs : MonoBehaviour
     private static GamePrefs menuInstance;
     public static string levelSelected;
 
-
     void Awake()
     {
         DontDestroyOnLoad(this);

@@ -9,11 +9,9 @@ public class Weapon : MonoBehaviour
     public Transform weaponBulletPoint;
     public AudioClip weaponSound;
 
-
-
-
     void Start()
     {
+        damage = PlayerPrefs.GetInt("weaponDamage", 10);
         animator = GetComponent<Animator>();
     }
 

@@ -22,8 +22,8 @@ public class ShopManager : MonoBehaviour
         {
             PlayerPrefs.SetInt("money", PlayerPrefs.GetInt("money", 0) - PlayerPrefs.GetInt("weaponCost", 100));
             PlayerPrefs.SetInt("weaponLevel", PlayerPrefs.GetInt("weaponLevel", 0) + 1);
-            PlayerPrefs.SetInt("weaponCost", (int)Mathf.Floor(PlayerPrefs.GetInt("weaponCost", 100) * 1.3f));
-            // New Weapon Damage;
+            PlayerPrefs.SetInt("weaponCost", (int)Mathf.Round(PlayerPrefs.GetInt("weaponCost", 100) * 1.3f));
+            PlayerPrefs.SetInt("weaponDamage", (int)Mathf.Round(PlayerPrefs.GetInt("weaponDamage", 10) * 1.3f));
         }
         else
         {
