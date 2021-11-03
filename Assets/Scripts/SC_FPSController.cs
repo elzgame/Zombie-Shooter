@@ -76,7 +76,8 @@ public class SC_FPSController : MonoBehaviour
 
     public void Shoot()
     {
-        weapon.gameObject.GetComponent<Animator>().SetBool("Shoot", true);
+        if (weapon.isCanShoot)
+            weapon.gameObject.GetComponent<Animator>().SetBool("Shoot", true);
     }
 
     public void Jump()
