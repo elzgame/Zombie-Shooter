@@ -7,6 +7,9 @@ public class ShopManager : MonoBehaviour
     public Text weaponCost;
     public Text moneyText;
     public int moneyPrefs;
+    public AudioClip soundBuy;
+    public AudioClip soundBuyError;
+
 
     void Update()
     {
@@ -24,9 +27,11 @@ public class ShopManager : MonoBehaviour
             PlayerPrefs.SetInt("weaponLevel", PlayerPrefs.GetInt("weaponLevel", 0) + 1);
             PlayerPrefs.SetInt("weaponCost", (int)Mathf.Round(PlayerPrefs.GetInt("weaponCost", 100) * 1.3f));
             PlayerPrefs.SetInt("weaponDamage", (int)Mathf.Round(PlayerPrefs.GetInt("weaponDamage", 10) * 1.3f));
+            MainMenu.audioSource.PlayOneShot(soundBuy);
         }
         else
         {
+            MainMenu.audioSource.PlayOneShot(soundBuyError);
             Debug.Log("Your money is not enough!");
         }
     }
