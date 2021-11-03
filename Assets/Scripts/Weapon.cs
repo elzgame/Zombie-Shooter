@@ -6,6 +6,7 @@ public class Weapon : MonoBehaviour
     private Animator animator;
     public Camera playerCamera;
     Vector3 moveDirection = Vector3.zero;
+    public Transform weaponBulletPoint;
 
 
     void Start()

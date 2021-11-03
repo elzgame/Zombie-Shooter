@@ -69,6 +69,8 @@ public class Zombie : MonoBehaviour
 
         if (isDying)
         {
+            isDying = false;
+            GameManager.zombieCountLeft--;
             agent.isStopped = true;
             isWalking = false;
             isAttacking = false;
