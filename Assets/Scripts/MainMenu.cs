@@ -1,28 +1,23 @@
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 using UnityEngine;
 
 public class MainMenu : MonoBehaviour
 {
     public GameObject difficultyPanel;
-    public string levelSelected;
-    private static MainMenu menuInstance;
-    void Awake()
-    {
-        DontDestroyOnLoad(this);
+    public GameObject shopPanel;
+    public Text moneyText;
+    public int moneyPrefs;
 
-        if (menuInstance == null)
-        {
-            menuInstance = this;
-        }
-        else
-        {
-            Destroy(gameObject);
-        }
+    void Start()
+    {
+        moneyPrefs = PlayerPrefs.GetInt("money", 0);
     }
+
 
     public void SelectDifficulty()
     {
-        difficultyPanel.SetActive(true);
+        difficultyPanel.gameObject.SetActive(true);
     }
 
     public void CloseSelectDifficulty()
@@ -30,23 +25,36 @@ public class MainMenu : MonoBehaviour
         difficultyPanel.SetActive(false);
     }
 
+    public void Shop()
+    {
+        shopPanel.SetActive(true);
+        moneyText.text = moneyPrefs.ToString();
+    }
+
+    public void CloseShop()
+    {
+        shopPanel.SetActive(false);
+    }
+
+    
     public void Easy()
     {
-        levelSelected = "Easy";
+        GamePrefs.levelSelected = "Easy";
         SceneManager.LoadScene("Game");
     }
 
     public void Medium()
     {
-        levelSelected = "Medium";
+        GamePrefs.levelSelected = "Medium";
         SceneManager.LoadScene("Game");
 
     }
 
     public void Hard()
     {
-        levelSelected = "Hard";
+        GamePrefs.levelSelected = "Hard";
         SceneManager.LoadScene("Game");
 
     }
+
 }

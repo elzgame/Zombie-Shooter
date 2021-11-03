@@ -1,6 +1,7 @@
 using System.Collections;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
@@ -14,25 +15,26 @@ public class GameManager : MonoBehaviour
     public static int zombieCountLeft;
     public int zombieCount;
     private bool isSpawning;
-    private MainMenu mainMenu;
     private DifficultyPrefs difficultyPrefs;
     public static AudioSource audioSource;
+    public GameObject gameOverPanel;
 
     void Start()
     {
+        isSpawning = false;
+        zombieCountLeft = 0;
         audioSource = GetComponent<AudioSource>();
         waveCount = 0;
-        mainMenu = FindObjectOfType<MainMenu>();
         difficultyPrefs = FindObjectOfType<DifficultyPrefs>();
-        if (mainMenu.levelSelected == "Easy")
+        if (GamePrefs.levelSelected == "Easy")
         {
             zombieWaveCount = difficultyPrefs.easyZombieWaveCount;
         }
-        else if (mainMenu.levelSelected == "Medium")
+        else if (GamePrefs.levelSelected == "Medium")
         {
             zombieWaveCount = difficultyPrefs.mediumZombieWaveCount;
         }
-        else if (mainMenu.levelSelected == "Hard")
+        else if (GamePrefs.levelSelected == "Hard")
         {
             zombieWaveCount = difficultyPrefs.hardZombieWaveCount;
         }
@@ -44,7 +46,7 @@ public class GameManager : MonoBehaviour
         waveText.text = "WAVE " + waveCount.ToString();
         if (Input.GetKeyDown(KeyCode.U))
         {
-            StartCoroutine(UpdateWave());
+            PlayerStats.playerHealth = 0;
         }
 
         if (zombieCountLeft <= 0 && isSpawning == false)
@@ -52,6 +54,7 @@ public class GameManager : MonoBehaviour
             isSpawning = true;
             StartCoroutine(UpdateWave());
         }
+
     }
 
     IEnumerator SpawnZombie()
@@ -62,21 +65,21 @@ public class GameManager : MonoBehaviour
             var spawnPoint = zombieSpawnPoint[Random.Range(0, zombieSpawnPoint.Length)];
             var zombie = Instantiate(zombiePrefabs, spawnPoint.position, Quaternion.identity);
             zombie.transform.SetParent(zombieParent);
-            if (mainMenu.levelSelected == "Easy")
+            if (GamePrefs.levelSelected == "Easy")
             {
                 zombie.GetComponent<Zombie>().zombieDamage = difficultyPrefs.easyZombieDamage;
                 zombie.GetComponent<Zombie>().zombieHealth = difficultyPrefs.easyZombieHealth;
                 zombie.GetComponent<Zombie>().zombieSpeed = difficultyPrefs.easyZombieSpeed;
                 zombie.GetComponent<Zombie>().zombieMoney = difficultyPrefs.easyZombieMoney;
             }
-            else if (mainMenu.levelSelected == "Medium")
+            else if (GamePrefs.levelSelected == "Medium")
             {
                 zombie.GetComponent<Zombie>().zombieDamage = difficultyPrefs.mediumZombieDamage;
                 zombie.GetComponent<Zombie>().zombieHealth = difficultyPrefs.mediumZombieHealth;
                 zombie.GetComponent<Zombie>().zombieSpeed = difficultyPrefs.mediumZombieSpeed;
                 zombie.GetComponent<Zombie>().zombieMoney = difficultyPrefs.mediumZombieMoney;
             }
-            else if (mainMenu.levelSelected == "Hard")
+            else if (GamePrefs.levelSelected == "Hard")
             {
                 zombie.GetComponent<Zombie>().zombieDamage = difficultyPrefs.hardZombieDamage;
                 zombie.GetComponent<Zombie>().zombieHealth = difficultyPrefs.hardZombieHealth;
@@ -92,6 +95,21 @@ public class GameManager : MonoBehaviour
                 StopCoroutine(SpawnZombie());
             }
         }
+    }
+
+    public void GameOver()
+    {
+        gameOverPanel.SetActive(true);
+    }
+
+    public void RestartGame()
+    {
+        SceneManager.LoadScene("Game");
+    }
+
+    public void MainMenu()
+    {
+        SceneManager.LoadScene("MainMenu");
     }
 
     IEnumerator UpdateWave()

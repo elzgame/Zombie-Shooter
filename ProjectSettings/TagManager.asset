@@ -6,6 +6,9 @@ TagManager:
   tags:
   - ZombieHand
   - Zombie
+  - MoneyText
+  - DifficultyPanel
+  - ShopPanel
   layers:
   - Default
   - TransparentFX
