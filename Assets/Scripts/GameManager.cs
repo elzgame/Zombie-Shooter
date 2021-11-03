@@ -7,6 +7,8 @@ public class GameManager : MonoBehaviour
 {
     public Text waveText;
     private int waveCount;
+    private float waveCountdown;
+    public Text waveCountdownText;
     public int[] zombieWaveCount;
     public Transform[] zombieSpawnPoint;
     public GameObject zombiePrefabs;
@@ -18,11 +20,13 @@ public class GameManager : MonoBehaviour
     private DifficultyPrefs difficultyPrefs;
     public static AudioSource audioSource;
     public GameObject gameOverPanel;
+    public int nextWaveCountdown;
 
     void Start()
     {
         isSpawning = false;
         zombieCountLeft = 0;
+        waveCountdown = 0;
         audioSource = GetComponent<AudioSource>();
         waveCount = 0;
         difficultyPrefs = FindObjectOfType<DifficultyPrefs>();
@@ -42,6 +46,10 @@ public class GameManager : MonoBehaviour
 
     void Update()
     {
+        waveCountdown -= Time.deltaTime;
+        int waveCountdownInt = (int)waveCountdown;
+        if (waveCountdown <= 0) waveCountdown = 0;
+        waveCountdownText.text = "NEXT WAVE IN " + waveCountdownInt.ToString() + "S";
         zombieCount = zombieCountLeft;
         waveText.text = "WAVE " + waveCount.ToString();
         if (Input.GetKeyDown(KeyCode.U))
@@ -49,9 +57,10 @@ public class GameManager : MonoBehaviour
             PlayerStats.playerHealth = 0;
         }
 
-        if (zombieCountLeft <= 0 && isSpawning == false)
+        if (zombieCountLeft <= 0 && isSpawning == false || waveCountdown <= 0 && isSpawning == false)
         {
             isSpawning = true;
+            waveCountdown = nextWaveCountdown;
             StartCoroutine(UpdateWave());
         }
 
@@ -92,6 +101,7 @@ public class GameManager : MonoBehaviour
             {
                 Debug.Log("Stop spawn zombies in this wave");
                 isSpawning = false;
+                waveCountdown = nextWaveCountdown;
                 StopCoroutine(SpawnZombie());
             }
         }
