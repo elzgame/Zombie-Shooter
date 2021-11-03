@@ -16,9 +16,11 @@ public class GameManager : MonoBehaviour
     private bool isSpawning;
     private MainMenu mainMenu;
     private DifficultyPrefs difficultyPrefs;
+    public static AudioSource audioSource;
 
     void Start()
     {
+        audioSource = GetComponent<AudioSource>();
         waveCount = 0;
         mainMenu = FindObjectOfType<MainMenu>();
         difficultyPrefs = FindObjectOfType<DifficultyPrefs>();

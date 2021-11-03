@@ -7,11 +7,19 @@ public class Weapon : MonoBehaviour
     public Camera playerCamera;
     Vector3 moveDirection = Vector3.zero;
     public Transform weaponBulletPoint;
+    public AudioClip weaponSound;
+
+
 
 
     void Start()
     {
         animator = GetComponent<Animator>();
+    }
+
+    public void ShootStart()
+    {
+        GameManager.audioSource.PlayOneShot(weaponSound);
     }
 
     public void ShootDone()
