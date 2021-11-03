@@ -1392,7 +1392,7 @@ MonoBehaviour:
   zombieHealth: 100
   zombieMoney: 20
   zombieSpeed: 1
-  damage: 3
+  zombieDamage: 3
   player: {fileID: 0}
   animator: {fileID: 0}
   zombieHand: {fileID: 1168626182}

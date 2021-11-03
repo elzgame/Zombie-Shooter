@@ -6,7 +6,7 @@ public class Zombie : MonoBehaviour
     public int zombieHealth;
     public int zombieMoney;
     public float zombieSpeed;
-    public int damage;
+    public int zombieDamage;
     public Transform player;
     private NavMeshAgent agent;
     public Animator animator;
@@ -86,7 +86,7 @@ public class Zombie : MonoBehaviour
     {
         if (zombieHand.GetComponent<ZombieHand>().isHit == true)
         {
-            PlayerStats.playerHealth -= damage;
+            PlayerStats.playerHealth -= zombieDamage;
         }
     }
 

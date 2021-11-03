@@ -342,6 +342,7 @@ GameObject:
   m_Component:
   - component: {fileID: 761937082}
   - component: {fileID: 761937083}
+  - component: {fileID: 761937084}
   m_Layer: 0
   m_Name: GameManager
   m_TagString: Untagged
@@ -384,6 +385,33 @@ MonoBehaviour:
   zombiePrefabs: {fileID: 7948085037926027390, guid: 9ab0a999f726c3648a8181c3643db87f, type: 3}
   zombieParent: {fileID: 867495115}
   zombieCount: 0
+--- !u!114 &761937084
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 761937081}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c85d7ddcb5ee9c74bac2364a84764e49, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  easyZombieDamage: 3
+  easyZombieHealth: 50
+  easyZombieMoney: 10
+  easyZombieSpeed: 1
+  easyZombieWaveCount: 0100000002000000030000000400000005000000060000000700000008000000090000000a000000
+  mediumZombieDamage: 5
+  mediumZombieHealth: 85
+  mediumZombieMoney: 20
+  mediumZombieSpeed: 1.5
+  mediumZombieWaveCount: 0200000003000000050000000600000008000000090000000a0000000c0000000d0000000e000000
+  hardZombieDamage: 7
+  hardZombieHealth: 135
+  hardZombieMoney: 40
+  hardZombieSpeed: 2
+  hardZombieWaveCount: 0200000004000000050000000600000007000000080000000a0000000e0000001100000014000000
 --- !u!1 &867495114
 GameObject:
   m_ObjectHideFlags: 0
