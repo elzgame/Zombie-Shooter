@@ -100,6 +100,7 @@ public class GameManager : MonoBehaviour
     public void GameOver()
     {
         gameOverPanel.SetActive(true);
+        PlayerPrefs.SetInt("money", PlayerPrefs.GetInt("money", 0) + PlayerStats.playerMoney);
     }
 
     public void RestartGame()

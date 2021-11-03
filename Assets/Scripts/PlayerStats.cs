@@ -8,9 +8,12 @@ public class PlayerStats : MonoBehaviour
     public Text healthText;
     public Text moneyText;
     private GameManager gameManager;
+    private bool isGameOver;
+
 
     void Start()
     {
+        isGameOver = false;
         playerHealth = 100;
         playerMoney = 0;
         gameManager = FindObjectOfType<GameManager>();
@@ -23,7 +26,11 @@ public class PlayerStats : MonoBehaviour
         if (playerHealth <= 0)
         {
             playerHealth = 0;
-            gameManager.GameOver();
+            if (isGameOver == false)
+            {
+                gameManager.GameOver();
+                isGameOver = true;
+            }
             Debug.Log("Player die! Game over!");
         }
     }
