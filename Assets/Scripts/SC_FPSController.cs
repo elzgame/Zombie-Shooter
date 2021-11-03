@@ -22,6 +22,7 @@ public class SC_FPSController : MonoBehaviour
     private bool isJumping;
     private bool isShooting;
     public Weapon weapon;
+    public WeaponManager weaponManager;
 
     void Start()
     {
@@ -78,6 +79,22 @@ public class SC_FPSController : MonoBehaviour
     {
         if (weapon.isCanShoot)
             weapon.gameObject.GetComponent<Animator>().SetBool("Shoot", true);
+    }
+
+    public void SwitchWeapon()
+    {
+        if (weaponManager.weaponUsed == 0)
+        {
+            weaponManager.isSwitching = true;
+            weaponManager.weaponUsed = 1;
+            Debug.Log("Change to knife");
+        }
+        else if (weaponManager.weaponUsed == 1)
+        {
+            weaponManager.isSwitching = true;
+            weaponManager.weaponUsed = 0;
+            Debug.Log("Change to riffle");
+        }
     }
 
     public void Jump()

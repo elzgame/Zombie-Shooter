@@ -45,6 +45,8 @@ public class Weapon : MonoBehaviour
         }
     }
 
+
+
     IEnumerator Reload()
     {
         Debug.Log("Reloading....");
