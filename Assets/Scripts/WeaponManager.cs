@@ -6,8 +6,10 @@ public class WeaponManager : MonoBehaviour
 {
     public int weaponUsed = 0;
     public bool isSwitching = false;
-    public GameObject knife;
     public GameObject weapon;
+    public GameObject knife;
+
+
 
     // Update is called once per frame
     void Update()

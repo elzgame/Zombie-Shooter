@@ -17,12 +17,16 @@ public class Weapon : MonoBehaviour
     public int weaponAmmoConstraint;
     public int weaponAmmoReload;
     public float reloadTime;
+    public GameObject crosshair;
+    private Vector3 crosshairScale;
+
 
     void Start()
     {
         weaponDamage = PlayerPrefs.GetInt("weaponDamage", 10);
         animator = GetComponent<Animator>();
         weaponAmmoCurrent = weaponAmmoConstraint;
+        crosshairScale = crosshair.transform.localScale;
     }
 
     void Update()
@@ -74,7 +78,7 @@ public class Weapon : MonoBehaviour
         {
             if (hit.transform.tag == "Zombie")
             {
-
+                StartCoroutine(CrosshairHit());
                 moveDirection = hit.transform.gameObject.GetComponent<Rigidbody>().transform.position - transform.position;
                 moveDirection = new Vector3(moveDirection.x, moveDirection.y + 0.75f, moveDirection.z);
                 Debug.Log(moveDirection);
@@ -83,6 +87,16 @@ public class Weapon : MonoBehaviour
                 Debug.Log(hit.transform.name + " : " + hit.transform.gameObject.GetComponent<Zombie>().zombieHealth);
             }
         }
+    }
+
+    IEnumerator CrosshairHit()
+    {
+        crosshair.GetComponent<Image>().color = Color.red;
+        crosshair.gameObject.transform.localScale = new Vector3(crosshair.gameObject.transform.localScale.x + 0.2f, crosshair.gameObject.transform.localScale.y + 0.2f, crosshair.gameObject.transform.localScale.z);
+        yield return new WaitForSeconds(0.1f);
+        crosshair.GetComponent<Image>().color = Color.black;
+        crosshair.gameObject.transform.localScale = crosshairScale;
+        StopCoroutine(CrosshairHit());
     }
 
 

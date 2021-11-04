@@ -266,7 +266,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 165.469, y: 165.469}
+  m_SizeDelta: {x: 122.447, y: 122.447}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &328243810
 MonoBehaviour:
@@ -288,7 +288,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 66a466a5b3c65d741a5e95d9020811e1, type: 3}
+  m_Sprite: {fileID: 21300000, guid: e74ed7bf3c233b04f9515894614ac494, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -627,7 +627,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 1}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -43.03003, y: -21}
+  m_AnchoredPosition: {x: -43.029785, y: -21}
   m_SizeDelta: {x: 290.9164, y: 198.4471}
   m_Pivot: {x: 1, y: 1}
 --- !u!1 &650437203
@@ -1252,7 +1252,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 0}
   m_AnchorMax: {x: 1, y: 0}
-  m_AnchoredPosition: {x: -43.03, y: 351.839}
+  m_AnchoredPosition: {x: -43.029785, y: 351.839}
   m_SizeDelta: {x: 103.161, y: 103.161}
   m_Pivot: {x: 1, y: 0}
 --- !u!114 &965771314
@@ -2532,8 +2532,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   weaponUsed: 0
   isSwitching: 0
-  knife: {fileID: 919132148891203948}
   weapon: {fileID: 919132149524791608}
+  knife: {fileID: 919132148891203948}
 --- !u!1 &1435456213
 GameObject:
   m_ObjectHideFlags: 0
@@ -2749,7 +2749,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 134.29999, y: 86.3999}
+  m_AnchoredPosition: {x: 134.2998, y: 86.3999}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0, y: 0}
 --- !u!114 &1592687071
@@ -3194,7 +3194,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 68.112976, y: 20.21289}
+  m_AnchoredPosition: {x: 68.11279, y: 20.21289}
   m_SizeDelta: {x: 166.187, y: 166.187}
   m_Pivot: {x: 0, y: 0}
 --- !u!114 &2052956667
@@ -3302,7 +3302,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 919132148891203948}
   m_LocalRotation: {x: -0.8176662, y: 0.029963117, z: -0.046648696, w: 0.57301676}
-  m_LocalPosition: {x: 0.60000014, y: -0.59519994, z: 1.1900002}
+  m_LocalPosition: {x: 0.6000001, y: -0.5951999, z: 1.19}
   m_LocalScale: {x: 43.254383, y: 43.25438, z: 43.254387}
   m_Children: []
   m_Father: {fileID: 1415733040}
@@ -3337,6 +3337,7 @@ GameObject:
   - component: {fileID: 3469287836680875123}
   - component: {fileID: 1711813855906273465}
   - component: {fileID: 919132148891203949}
+  - component: {fileID: 919132148891203950}
   m_Layer: 0
   m_Name: Knife
   m_TagString: Untagged
@@ -3356,6 +3357,30 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1ee60a81d9817194497edffec8f7f785, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  knifeDamage: 7
+  isCanKnife: 1
+  playerCamera: {fileID: 3182327597179260346}
+  crosshair: {fileID: 328243808}
+  knifeStabSound: {fileID: 8300000, guid: 48c68c653d3c92e48a518f6c04c4eb30, type: 3}
+--- !u!95 &919132148891203950
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 919132148891203948}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 03b83e34210e9e54fbd706fec84dc3f9, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &919132149524791608
 GameObject:
   m_ObjectHideFlags: 0
@@ -3397,6 +3422,7 @@ MonoBehaviour:
   weaponAmmoConstraint: 30
   weaponAmmoReload: 60
   reloadTime: 1
+  crosshair: {fileID: 328243808}
 --- !u!95 &919132149524791610
 Animator:
   serializedVersion: 3
@@ -3629,7 +3655,11 @@ MonoBehaviour:
   touchField: {fileID: 873600213}
   canMove: 1
   weapon: {fileID: 919132149524791609}
-  weaponManager: {fileID: 0}
+  knife: {fileID: 919132148891203949}
+  weaponManager: {fileID: 1415733041}
+  weaponSprite: {fileID: 21300000, guid: f6523ee484ecd5f4abc5b5c9592da97a, type: 3}
+  knifeSprite: {fileID: 21300000, guid: 95256f4ecc37e684d9ff3fd310da3259, type: 3}
+  weaponShootButton: {fileID: 1014913437}
 --- !u!4 &3182327597820332749
 Transform:
   m_ObjectHideFlags: 0
@@ -3638,7 +3668,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3182327597820332746}
   m_LocalRotation: {x: -0, y: 0.9934146, z: -0, w: 0.11457518}
-  m_LocalPosition: {x: 7.5908375, y: 0.739, z: -4.153789}
+  m_LocalPosition: {x: 7.590837, y: 0.739, z: -4.153789}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 3182327597953394159}

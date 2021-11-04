@@ -5,15 +5,7 @@ using UnityEngine;
 public class SpawnZombie : MonoBehaviour
 {
     public GameObject zombiePrefabs;
-    // void Start()
-    // {
-    //     StartCoroutine(SpawnZombie());
-    // }
-
-    // IEnumerator SpawnZombie() {
-    //     yield return new WaitForSeconds();
-    // }
-
+    
     void Update()
     {
         if (Input.GetKeyDown(KeyCode.P))

@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using UnityEngine.UI;
 using UnityEngine.InputSystem;
 
 [RequireComponent(typeof(CharacterController))]
@@ -22,7 +23,11 @@ public class SC_FPSController : MonoBehaviour
     private bool isJumping;
     private bool isShooting;
     public Weapon weapon;
+    public Knife knife;
     public WeaponManager weaponManager;
+    public Sprite weaponSprite;
+    public Sprite knifeSprite;
+    public GameObject weaponShootButton;
 
     void Start()
     {
@@ -77,20 +82,29 @@ public class SC_FPSController : MonoBehaviour
 
     public void Shoot()
     {
-        if (weapon.isCanShoot)
+        if (weapon.isCanShoot && weaponManager.weaponUsed == 0)
+        {
             weapon.gameObject.GetComponent<Animator>().SetBool("Shoot", true);
+        }
+        else if (weaponManager.weaponUsed == 1)
+        {
+            knife.gameObject.GetComponent<Animator>().SetBool("Stab", true);
+        }
+
     }
 
     public void SwitchWeapon()
     {
         if (weaponManager.weaponUsed == 0)
         {
+            weaponShootButton.GetComponent<Image>().sprite = knifeSprite;
             weaponManager.isSwitching = true;
             weaponManager.weaponUsed = 1;
             Debug.Log("Change to knife");
         }
         else if (weaponManager.weaponUsed == 1)
         {
+            weaponShootButton.GetComponent<Image>().sprite = weaponSprite;
             weaponManager.isSwitching = true;
             weaponManager.weaponUsed = 0;
             Debug.Log("Change to riffle");
