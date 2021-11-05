@@ -5,7 +5,7 @@ using System.Collections;
 public class Weapon : MonoBehaviour
 {
     public int weaponDamage;
-    private Animator animator;
+    public Animator animator;
     public Camera playerCamera;
     Vector3 moveDirection = Vector3.zero;
     public Transform weaponBulletPoint;
@@ -27,6 +27,16 @@ public class Weapon : MonoBehaviour
         animator = GetComponent<Animator>();
         weaponAmmoCurrent = weaponAmmoConstraint;
         crosshairScale = crosshair.transform.localScale;
+    }
+
+    void OnEnable()
+    {
+        animator.SetInteger("Switch", 2);
+    }
+
+    public void AnimateUpDone()
+    {
+        animator.SetInteger("Switch", 0);
     }
 
     void Update()

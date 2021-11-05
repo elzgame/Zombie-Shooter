@@ -3421,6 +3421,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1ee60a81d9817194497edffec8f7f785, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  animator: {fileID: 0}
   knifeDamage: 7
   isCanKnife: 1
   playerCamera: {fileID: 3182327597179260346}
@@ -3476,6 +3477,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   weaponDamage: 10
+  animator: {fileID: 0}
   playerCamera: {fileID: 3182327597179260346}
   weaponBulletPoint: {fileID: 1510684127}
   weaponShootSound: {fileID: 8300000, guid: abfbbc2fa34490e48855aa803ca5c60e, type: 3}

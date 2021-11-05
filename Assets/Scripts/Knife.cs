@@ -4,7 +4,7 @@ using System.Collections;
 
 public class Knife : MonoBehaviour
 {
-    private Animator animator;
+    public Animator animator;
     public int knifeDamage;
     public bool isCanKnife = true;
     public Camera playerCamera;
@@ -14,10 +14,27 @@ public class Knife : MonoBehaviour
     public AudioClip knifeStabSound;
 
 
+
+    void Update()
+    {
+
+    }
+
     void Start()
     {
         animator = GetComponent<Animator>();
         crosshairScale = crosshair.transform.localScale;
+    }
+
+    void OnEnable()
+    {
+        animator.SetInteger("Switch", 2);
+    }
+
+
+    public void AnimateUpDone()
+    {
+        animator.SetInteger("Switch", 0);
     }
 
     public void StabStart()
