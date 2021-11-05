@@ -13,15 +13,9 @@ public class Knife : MonoBehaviour
     private Vector3 crosshairScale;
     public AudioClip knifeStabSound;
 
-
-
-    void Update()
-    {
-
-    }
-
     void Start()
     {
+        knifeDamage = PlayerPrefs.GetInt("knifeDamage", 5);
         animator = GetComponent<Animator>();
         crosshairScale = crosshair.transform.localScale;
     }
