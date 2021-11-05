@@ -13,18 +13,15 @@ public class Zombie : MonoBehaviour
     private bool isAttacking;
     private bool isWalking;
     private bool isDying;
-    public AudioClip[] soundZombie;
+    public AudioClip soundZombieDie;
+    public AudioClip[] soundZombieAttack;
     [SerializeField]
     private GameObject zombieHand;
-    // private AudioSource audioSource;
-
     void Start()
     {
         agent = GetComponent<NavMeshAgent>();
-        // audioSource = GetComponent<AudioSource>();
         animator = GetComponent<Animator>();
         player = FindObjectOfType<SC_FPSController>().gameObject.transform;
-        // audioSource.PlayOneShot(soundZombie[Random.Range(0, soundZombie.Length)]);
         isWalking = true;
     }
 
@@ -74,6 +71,7 @@ public class Zombie : MonoBehaviour
         if (isDying)
         {
             isDying = false;
+            GameManager.audioSource.PlayOneShot(soundZombieDie);
             GameManager.zombieCountLeft--;
             agent.isStopped = true;
             isWalking = false;
@@ -91,6 +89,7 @@ public class Zombie : MonoBehaviour
         if (zombieHand.GetComponent<ZombieHand>().isHit == true)
         {
             PlayerStats.playerHealth -= zombieDamage;
+            GameManager.audioSource.PlayOneShot(soundZombieAttack[Random.Range(0, soundZombieAttack.Length)]);
         }
     }
 

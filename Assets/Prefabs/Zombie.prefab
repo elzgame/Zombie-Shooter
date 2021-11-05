@@ -1314,8 +1314,8 @@ GameObject:
   - component: {fileID: 7101100099582864683}
   - component: {fileID: 412389118599997084}
   - component: {fileID: 919132147859815546}
-  - component: {fileID: 2874686845598741437}
   - component: {fileID: 2849810583484739052}
+  - component: {fileID: 2874686845598741437}
   m_Layer: 0
   m_Name: Zombie
   m_TagString: Zombie
@@ -1396,9 +1396,11 @@ MonoBehaviour:
   zombieDamage: 3
   player: {fileID: 0}
   animator: {fileID: 0}
-  soundZombie1: {fileID: 8300000, guid: 21d00f4a2582ca4479a80ed5a1a791a3, type: 3}
-  soundZombie2: {fileID: 0}
-  soundZombie3: {fileID: 0}
+  soundZombieDie: {fileID: 8300000, guid: f11d5cb7e2b1e3945b826a0dfa5cef98, type: 3}
+  soundZombieAttack:
+  - {fileID: 8300000, guid: 44c5c1b0f94cd924088c5933bf2c2459, type: 3}
+  - {fileID: 8300000, guid: a77bcf6556e203744b9a96df278eb7ed, type: 3}
+  - {fileID: 8300000, guid: e4fdd008e16bffd48ba810e2433980ec, type: 3}
   zombieHand: {fileID: 1168626182}
 --- !u!195 &919132147859815546
 NavMeshAgent:
@@ -1422,19 +1424,6 @@ NavMeshAgent:
   m_BaseOffset: 0
   m_WalkableMask: 4294967295
   m_ObstacleAvoidanceType: 4
---- !u!65 &2874686845598741437
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7948085037926027390}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 0.4376524, y: 1.7497979, z: 0.34886003}
-  m_Center: {x: -0.0049326634, y: 0.91751593, z: -0.0000004063953}
 --- !u!82 &2849810583484739052
 AudioSource:
   m_ObjectHideFlags: 0
@@ -1531,6 +1520,19 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!65 &2874686845598741437
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7948085037926027390}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.4376524, y: 1.7497979, z: 0.34886003}
+  m_Center: {x: -0.0049326634, y: 0.91751593, z: -0.0000004063953}
 --- !u!1 &8077590404982364866
 GameObject:
   m_ObjectHideFlags: 0

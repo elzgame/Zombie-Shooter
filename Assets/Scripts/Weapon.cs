@@ -32,6 +32,8 @@ public class Weapon : MonoBehaviour
     void Update()
     {
         weaponAmmoText.text = weaponAmmoCurrent + " / " + weaponAmmoReload;
+        if (weaponAmmoCurrent <= 0)
+            weaponAmmoCurrent = 0;
         if (weaponAmmoCurrent <= 0 && isCanShoot)
         {
             isCanShoot = false;
