@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.InputSystem;
+using System.Collections;
 
 [RequireComponent(typeof(CharacterController))]
 
@@ -28,11 +29,16 @@ public class SC_FPSController : MonoBehaviour
     public Sprite weaponSprite;
     public Sprite knifeSprite;
     public GameObject weaponShootButton;
+    private bool isStepping;
+    private Animator animator;
+    public AudioClip soundWalking;
+    public AudioClip soundJumping;
 
     void Start()
     {
         characterController = GetComponent<CharacterController>();
         playerInput = GetComponent<PlayerInput>();
+        animator = GetComponent<Animator>();
     }
 
     void Update()
@@ -47,10 +53,22 @@ public class SC_FPSController : MonoBehaviour
         float curSpeedY = canMove ? (isRunning ? runningSpeed : walkingSpeed) * horizontal : 0;
         float movementDirectionY = moveDirection.y;
         moveDirection = (forward * curSpeedX) + (right * curSpeedY);
+        Debug.Log(moveDirection);
+
+        if (moveDirection.x != 0 && moveDirection.z != 0 && isStepping == false)
+        {
+            isStepping = true;
+            StartCoroutine(Walking());
+        }
+        else if (moveDirection.x == 0 && moveDirection.z == 0)
+        {
+            StopCoroutine(Walking());
+        }
 
         if (isJumping && canMove && characterController.isGrounded)
         {
             isJumping = false;
+            GameManager.audioSource.PlayOneShot(soundJumping);
             moveDirection.y = jumpSpeed;
         }
         else
@@ -78,6 +96,14 @@ public class SC_FPSController : MonoBehaviour
             playerCamera.transform.localRotation = Quaternion.Euler(rotationX, 0, 0);
             transform.rotation *= Quaternion.Euler(0, touchField.TouchDist.x * lookSpeed, 0);
         }
+    }
+
+    IEnumerator Walking()
+    {
+        GameManager.audioSource.PlayOneShot(soundWalking);
+        yield return new WaitForSeconds(.5f);
+        isStepping = false;
+        StopCoroutine(Walking());
     }
 
     public void Shoot()

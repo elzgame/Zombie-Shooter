@@ -13,14 +13,18 @@ public class Zombie : MonoBehaviour
     private bool isAttacking;
     private bool isWalking;
     private bool isDying;
+    public AudioClip[] soundZombie;
     [SerializeField]
     private GameObject zombieHand;
+    // private AudioSource audioSource;
 
     void Start()
     {
         agent = GetComponent<NavMeshAgent>();
+        // audioSource = GetComponent<AudioSource>();
         animator = GetComponent<Animator>();
         player = FindObjectOfType<SC_FPSController>().gameObject.transform;
+        // audioSource.PlayOneShot(soundZombie[Random.Range(0, soundZombie.Length)]);
         isWalking = true;
     }
 
