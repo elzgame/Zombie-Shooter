@@ -141,7 +141,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &6885335
 RectTransform:
   m_ObjectHideFlags: 0
@@ -216,11 +216,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 44a47f7cd8b14b145abffbe970a6d71e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  weaponLevel: {fileID: 0}
-  weaponCost: {fileID: 0}
-  knifeLevel: {fileID: 0}
-  knifeCost: {fileID: 0}
-  moneyText: {fileID: 0}
+  weaponLevel: {fileID: 1484782259}
+  weaponCost: {fileID: 1131611240}
+  knifeLevel: {fileID: 203037696}
+  knifeCost: {fileID: 674327779}
+  moneyText: {fileID: 951615355}
   moneyPrefs: 0
   soundBuy: {fileID: 8300000, guid: 34812b45ec488bb4693416012e7a7257, type: 3}
   soundBuyError: {fileID: 8300000, guid: f89a58e4adcb9cd47b5fea4dbc9c3d09, type: 3}
@@ -502,7 +502,7 @@ GameObject:
   - component: {fileID: 203037697}
   - component: {fileID: 203037696}
   m_Layer: 5
-  m_Name: WeaponLevel
+  m_Name: KnifeLevel
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1317,7 +1317,7 @@ GameObject:
   - component: {fileID: 674327779}
   - component: {fileID: 674327781}
   m_Layer: 5
-  m_Name: WeaponCost
+  m_Name: KnifeCost
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1770,7 +1770,7 @@ GameObject:
   - component: {fileID: 802688845}
   - component: {fileID: 802688844}
   m_Layer: 5
-  m_Name: UpgradeWeapon
+  m_Name: UpgradeKnife
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2056,7 +2056,7 @@ GameObject:
   - component: {fileID: 922131679}
   - component: {fileID: 922131678}
   m_Layer: 5
-  m_Name: WeaponName
+  m_Name: KnifeName
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3145,7 +3145,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 305}
+  m_AnchoredPosition: {x: 0, y: 278}
   m_SizeDelta: {x: 2477.042, y: 464.45}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1972638530
@@ -3471,7 +3471,7 @@ GameObject:
   - component: {fileID: 2077568717}
   - component: {fileID: 2077568716}
   m_Layer: 5
-  m_Name: WeaponImage
+  m_Name: KnifeImage
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

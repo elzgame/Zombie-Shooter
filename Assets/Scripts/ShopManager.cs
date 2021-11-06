@@ -42,11 +42,11 @@ public class ShopManager : MonoBehaviour
 
     public void UpgradeKnife()
     {
-        if (PlayerPrefs.GetInt("money", 0) >= PlayerPrefs.GetInt("knifeCost", 100))
+        if (PlayerPrefs.GetInt("money", 0) >= PlayerPrefs.GetInt("knifeCost", 50))
         {
-            PlayerPrefs.SetInt("money", PlayerPrefs.GetInt("money", 0) - PlayerPrefs.GetInt("knifeCost", 100));
+            PlayerPrefs.SetInt("money", PlayerPrefs.GetInt("money", 0) - PlayerPrefs.GetInt("knifeCost", 50));
             PlayerPrefs.SetInt("knifeLevel", PlayerPrefs.GetInt("knifeLevel", 0) + 1);
-            PlayerPrefs.SetInt("knifeCost", (int)Mathf.Round(PlayerPrefs.GetInt("knifeCost", 100) * 1.3f));
+            PlayerPrefs.SetInt("knifeCost", (int)Mathf.Round(PlayerPrefs.GetInt("knifeCost", 50) * 1.3f));
             PlayerPrefs.SetInt("knifeDamage", (int)Mathf.Round(PlayerPrefs.GetInt("knifeDamage", 10) * 1.3f));
             MainMenu.audioSource.PlayOneShot(soundBuy);
         }

@@ -11,8 +11,10 @@ public class GameManager : MonoBehaviour
     public Text waveCountdownText;
     public int[] zombieWaveCount;
     public Transform[] zombieSpawnPoint;
+    public Transform[] healthKitSpawnPoint;
     public GameObject zombiePrefabs;
     public Transform zombieParent;
+    public Transform healthKitParent;
     [SerializeField]
     public static int zombieCountLeft;
     public int zombieCount;
@@ -21,6 +23,7 @@ public class GameManager : MonoBehaviour
     public static AudioSource audioSource;
     public GameObject gameOverPanel;
     public int nextWaveCountdown;
+    public GameObject healthKitPrefab;
 
     void Start()
     {
@@ -42,6 +45,7 @@ public class GameManager : MonoBehaviour
         {
             zombieWaveCount = difficultyPrefs.hardZombieWaveCount;
         }
+        StartCoroutine(SpawnHealthKit());
     }
 
     void Update()
@@ -104,6 +108,19 @@ public class GameManager : MonoBehaviour
                 waveCountdown = nextWaveCountdown;
                 StopCoroutine(SpawnZombie());
             }
+        }
+    }
+
+
+    IEnumerator SpawnHealthKit()
+    {
+        while (true)
+        {
+            yield return new WaitForSeconds(Random.Range(5, 60));
+            var spawnPoint = healthKitSpawnPoint[Random.Range(0, healthKitSpawnPoint.Length)];
+            var healthKit = Instantiate(zombiePrefabs, spawnPoint.position, Quaternion.identity);
+            healthKit.transform.SetParent(healthKitParent);
+            Instantiate(healthKitPrefab, spawnPoint.position, Quaternion.identity);
         }
     }
 
