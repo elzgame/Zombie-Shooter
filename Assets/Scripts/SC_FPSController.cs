@@ -149,5 +149,4 @@ public class SC_FPSController : MonoBehaviour
         isShooting = false;
     }
 
-
 }

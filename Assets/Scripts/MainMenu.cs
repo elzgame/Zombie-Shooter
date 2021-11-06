@@ -13,14 +13,14 @@ public class MainMenu : MonoBehaviour
         audioSource = GetComponent<AudioSource>();
     }
 
-    // void Update()
-    // {
-    //     if (Input.GetKeyDown(KeyCode.Space))
-    //     {
-    //         PlayerPrefs.DeleteAll();
-    //         PlayerPrefs.SetInt("money", 999999999);
-    //     }
-    // }
+    void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.Space))
+        {
+            PlayerPrefs.DeleteAll();
+            PlayerPrefs.SetInt("money", 999999999);
+        }
+    }
 
     public void SelectDifficulty()
     {

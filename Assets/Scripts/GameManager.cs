@@ -21,12 +21,19 @@ public class GameManager : MonoBehaviour
     public static int zombieCountLeft;
     public int zombieCount;
     private bool isSpawning;
+    private bool isLastWave;
+    private bool isWin;
     private DifficultyPrefs difficultyPrefs;
     public static AudioSource audioSource;
     public GameObject gameOverPanel;
+    public GameObject winPanel;
     public int nextWaveCountdown;
     public GameObject healthKitPrefab;
     public GameObject ammoBoxPrefab;
+    public GameObject pausePanel;
+    public AudioClip soundClick;
+    public AudioClip soundDeath;
+    public AudioClip soundWin;
 
     void Start()
     {
@@ -57,19 +64,43 @@ public class GameManager : MonoBehaviour
         waveCountdown -= Time.deltaTime;
         int waveCountdownInt = (int)waveCountdown;
         if (waveCountdown <= 0) waveCountdown = 0;
-        waveCountdownText.text = "NEXT WAVE IN " + waveCountdownInt.ToString() + "S";
-        zombieCount = zombieCountLeft;
-        waveText.text = "WAVE " + waveCount.ToString();
-        if (Input.GetKeyDown(KeyCode.U))
+
+        if (waveCount >= zombieWaveCount.Length)
+            isLastWave = true;
+
+        if (isLastWave)
         {
-            PlayerStats.playerHealth = 0;
+            Debug.Log("FINISHH");
+            waveCountdownText.text = "LAST WAVE";
+        }
+        
+        if (!isLastWave)
+        {
+            waveCountdownText.text = "NEXT WAVE IN " + waveCountdownInt.ToString() + "S";
         }
 
+        zombieCount = zombieCountLeft;
+        waveText.text = "WAVE " + waveCount.ToString();
         if (zombieCountLeft <= 0 && isSpawning == false || waveCountdown <= 0 && isSpawning == false)
         {
-            isSpawning = true;
-            waveCountdown = nextWaveCountdown;
-            StartCoroutine(UpdateWave());
+            if (waveCount >= zombieWaveCount.Length)
+            {
+                isSpawning = true;
+                isWin = true;
+                waveCountdown = nextWaveCountdown;
+                StartCoroutine(UpdateWave());
+            }
+            else
+            {
+                isSpawning = true;
+                waveCountdown = nextWaveCountdown;
+                StartCoroutine(UpdateWave());
+            }
+        }
+        else if (isLastWave && zombieCountLeft <= 0 && isWin)
+        {
+            isWin = false;
+            Win();
         }
 
     }
@@ -137,20 +168,48 @@ public class GameManager : MonoBehaviour
         }
     }
 
+    public void Win()
+    {
+        Time.timeScale = 0;
+        winPanel.SetActive(true);
+        GameManager.audioSource.PlayOneShot(soundWin);
+        PlayerPrefs.SetInt("money", PlayerPrefs.GetInt("money", 0) + PlayerStats.playerMoney);
+    }
+
     public void GameOver()
     {
+        Time.timeScale = 0;
         gameOverPanel.SetActive(true);
+        GameManager.audioSource.PlayOneShot(soundDeath);
         PlayerPrefs.SetInt("money", PlayerPrefs.GetInt("money", 0) + PlayerStats.playerMoney);
     }
 
     public void RestartGame()
     {
+        Time.timeScale = 1;
+        GameManager.audioSource.PlayOneShot(soundClick);
         SceneManager.LoadScene("Game");
     }
 
     public void MainMenu()
     {
+        Time.timeScale = 1;
+        GameManager.audioSource.PlayOneShot(soundClick);
         SceneManager.LoadScene("MainMenu");
+    }
+
+    public void Pause()
+    {
+        Time.timeScale = 0;
+        GameManager.audioSource.PlayOneShot(soundClick);
+        pausePanel.SetActive(true);
+    }
+
+    public void Continue()
+    {
+        Time.timeScale = 1;
+        GameManager.audioSource.PlayOneShot(soundClick);
+        pausePanel.SetActive(false);
     }
 
     IEnumerator UpdateWave()

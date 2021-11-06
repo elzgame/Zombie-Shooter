@@ -52,12 +52,7 @@ public class Zombie : MonoBehaviour
             animator.SetBool("Attack", false);
             zombieHand.GetComponent<ZombieHand>().isHit = false;
         }
-
-        if (Input.GetKeyDown(KeyCode.L))
-        {
-            animator.SetBool("Die", true);
-        }
-
+        
         if (zombieHealth <= 0)
         {
             animator.SetBool("Die", true);
