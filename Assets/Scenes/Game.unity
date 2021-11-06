@@ -8756,7 +8756,7 @@ MonoBehaviour:
   zombieCount: 0
   gameOverPanel: {fileID: 1060412777}
   winPanel: {fileID: 22838229}
-  nextWaveCountdown: 30
+  nextWaveCountdown: 1
   healthKitPrefab: {fileID: 437291581811245333, guid: f7278c30cb5d3974aaae3bb0db74a6f7, type: 3}
   ammoBoxPrefab: {fileID: 4260781690762802608, guid: 23e81bc2bcb3d9b419b10a2e86281176, type: 3}
   pausePanel: {fileID: 602942815}
@@ -8778,18 +8778,18 @@ MonoBehaviour:
   easyZombieDamage: 3
   easyZombieHealth: 50
   easyZombieMoney: 10
-  easyZombieSpeed: 1
+  easyZombieSpeed: 2
   easyZombieWaveCount: 0100000002000000030000000400000005000000060000000700000008000000090000000a000000
   mediumZombieDamage: 5
   mediumZombieHealth: 85
   mediumZombieMoney: 20
-  mediumZombieSpeed: 1.5
+  mediumZombieSpeed: 3
   mediumZombieWaveCount: 0200000003000000050000000600000008000000090000000a0000000c0000000d0000000e000000
   hardZombieDamage: 7
   hardZombieHealth: 135
   hardZombieMoney: 40
-  hardZombieSpeed: 2
-  hardZombieWaveCount: 0200000004000000050000000600000007000000080000000a0000000e0000001100000014000000
+  hardZombieSpeed: 4
+  hardZombieWaveCount: 0200000004000000050000000600000007000000080000000a0000000c0000000d0000000f000000
 --- !u!82 &761937085
 AudioSource:
   m_ObjectHideFlags: 0
@@ -27435,12 +27435,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 314134540d1be9b42b85e504f43aa993, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  walkingSpeed: 4
+  walkingSpeed: 6
   runningSpeed: 11.5
   jumpSpeed: 8
   gravity: 20
   playerCamera: {fileID: 3182327597179260346}
-  lookSpeed: 0.25
+  lookSpeed: 0.15
   lookXLimit: 45
   touchField: {fileID: 873600213}
   canMove: 1

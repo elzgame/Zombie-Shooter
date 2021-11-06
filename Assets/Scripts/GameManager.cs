@@ -34,12 +34,14 @@ public class GameManager : MonoBehaviour
     public AudioClip soundClick;
     public AudioClip soundDeath;
     public AudioClip soundWin;
+    public int zombiePerWave = 0;
 
     void Start()
     {
         isSpawning = false;
         zombieCountLeft = 0;
         waveCountdown = 0;
+        zombieCount = zombieCountLeft;
         audioSource = GetComponent<AudioSource>();
         waveCount = 0;
         difficultyPrefs = FindObjectOfType<DifficultyPrefs>();
@@ -63,6 +65,8 @@ public class GameManager : MonoBehaviour
     {
         waveCountdown -= Time.deltaTime;
         int waveCountdownInt = (int)waveCountdown;
+        zombieCount = zombieCountLeft;
+
         if (waveCountdown <= 0) waveCountdown = 0;
 
         if (waveCount >= zombieWaveCount.Length)
@@ -70,17 +74,17 @@ public class GameManager : MonoBehaviour
 
         if (isLastWave)
         {
-            Debug.Log("FINISHH");
+            waveText.text = "LAST WAVE";
             waveCountdownText.text = "LAST WAVE";
         }
-        
+
         if (!isLastWave)
         {
+            waveText.text = "WAVE " + waveCount.ToString();
             waveCountdownText.text = "NEXT WAVE IN " + waveCountdownInt.ToString() + "S";
         }
 
-        zombieCount = zombieCountLeft;
-        waveText.text = "WAVE " + waveCount.ToString();
+
         if (zombieCountLeft <= 0 && isSpawning == false || waveCountdown <= 0 && isSpawning == false)
         {
             if (waveCount >= zombieWaveCount.Length)
@@ -88,7 +92,8 @@ public class GameManager : MonoBehaviour
                 isSpawning = true;
                 isWin = true;
                 waveCountdown = nextWaveCountdown;
-                StartCoroutine(UpdateWave());
+                if (!isLastWave)
+                    StartCoroutine(UpdateWave());
             }
             else
             {
@@ -107,12 +112,14 @@ public class GameManager : MonoBehaviour
 
     IEnumerator SpawnZombie()
     {
-        zombieCountLeft = 0;
-        while (true && zombieCountLeft < zombieWaveCount[waveCount - 1])
+        zombiePerWave = 0;
+        while (true && zombiePerWave < zombieWaveCount[waveCount - 1])
         {
             var spawnPoint = zombieSpawnPoint[Random.Range(0, zombieSpawnPoint.Length)];
             var zombie = Instantiate(zombiePrefabs, spawnPoint.position, Quaternion.identity);
             zombie.transform.SetParent(zombieParent);
+            zombieCountLeft++;
+            zombiePerWave++;
             if (GamePrefs.levelSelected == "Easy")
             {
                 zombie.GetComponent<Zombie>().zombieDamage = difficultyPrefs.easyZombieDamage;
@@ -134,9 +141,8 @@ public class GameManager : MonoBehaviour
                 zombie.GetComponent<Zombie>().zombieSpeed = difficultyPrefs.hardZombieSpeed;
                 zombie.GetComponent<Zombie>().zombieMoney = difficultyPrefs.hardZombieMoney;
             }
-            zombieCountLeft++;
             yield return new WaitForSeconds(.2f);
-            if (zombieCountLeft >= zombieWaveCount[waveCount - 1])
+            if (zombiePerWave >= zombieWaveCount[waveCount - 1])
             {
                 isSpawning = false;
                 waveCountdown = nextWaveCountdown;
