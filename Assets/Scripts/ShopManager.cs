@@ -36,7 +36,6 @@ public class ShopManager : MonoBehaviour
         else
         {
             MainMenu.audioSource.PlayOneShot(soundBuyError);
-            Debug.Log("Your money is not enough!");
         }
     }
 
@@ -53,7 +52,6 @@ public class ShopManager : MonoBehaviour
         else
         {
             MainMenu.audioSource.PlayOneShot(soundBuyError);
-            Debug.Log("Your money is not enough!");
         }
     }
 

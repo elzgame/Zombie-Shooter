@@ -17,6 +17,7 @@ public class Zombie : MonoBehaviour
     public AudioClip[] soundZombieAttack;
     [SerializeField]
     private GameObject zombieHand;
+
     void Start()
     {
         agent = GetComponent<NavMeshAgent>();
@@ -28,14 +29,12 @@ public class Zombie : MonoBehaviour
     void Update()
     {
         var distance = Vector3.Distance(player.position, transform.position);
-        // Debug.Log(distance);
         if (distance <= 2f && isAttacking == false && isDying == false)
         {
             isAttacking = true;
             isWalking = false;
             animator.SetBool("Walk", false);
             animator.SetBool("Attack", true);
-            Debug.Log("Attacking");
         }
         else if (distance >= 2f && isDying == false)
         {
@@ -57,16 +56,12 @@ public class Zombie : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.L))
         {
             animator.SetBool("Die", true);
-            Debug.Log("Killed a zombie!");
         }
 
         if (zombieHealth <= 0)
         {
             animator.SetBool("Die", true);
-            Debug.Log("Killed a zombie!");
         }
-
-
 
         if (isDying)
         {

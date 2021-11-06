@@ -31,7 +31,6 @@ public class PlayerStats : MonoBehaviour
                 gameManager.GameOver();
                 isGameOver = true;
             }
-            Debug.Log("Player die! Game over!");
         }
     }
 

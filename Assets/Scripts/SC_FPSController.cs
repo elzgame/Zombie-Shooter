@@ -53,8 +53,6 @@ public class SC_FPSController : MonoBehaviour
         float curSpeedY = canMove ? (isRunning ? runningSpeed : walkingSpeed) * horizontal : 0;
         float movementDirectionY = moveDirection.y;
         moveDirection = (forward * curSpeedX) + (right * curSpeedY);
-        Debug.Log(moveDirection);
-
         if (moveDirection.x != 0 && moveDirection.z != 0 && isStepping == false)
         {
             isStepping = true;
@@ -116,7 +114,6 @@ public class SC_FPSController : MonoBehaviour
         {
             knife.gameObject.GetComponent<Animator>().SetBool("Stab", true);
         }
-
     }
 
     public void SwitchWeapon()
@@ -126,25 +123,20 @@ public class SC_FPSController : MonoBehaviour
             weaponShootButton.GetComponent<Image>().sprite = knifeSprite;
             weaponManager.isSwitching = true;
             weapon.animator.SetInteger("Switch", 1);
-            // knife.animator.SetInteger("Switch", 2);
             weaponManager.weaponUsed = 1;
-            Debug.Log("Change to knife");
         }
         else if (weaponManager.weaponUsed == 1)
         {
             weaponShootButton.GetComponent<Image>().sprite = weaponSprite;
             weaponManager.isSwitching = true;
-            // weapon.animator.SetInteger("Switch", 2);
             knife.animator.SetInteger("Switch", 1);
             weaponManager.weaponUsed = 0;
-            Debug.Log("Change to riffle");
         }
     }
 
     public void Jump()
     {
         isJumping = true;
-        Debug.Log("Jumping!");
     }
 
     public void ShootingDown()

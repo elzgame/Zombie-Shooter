@@ -34,7 +34,6 @@ public class Knife : MonoBehaviour
     public void StabStart()
     {
         GameManager.audioSource.PlayOneShot(knifeStabSound);
-        Debug.Log("Stab Start!");
     }
 
     public void StabDone()
@@ -50,7 +49,6 @@ public class Knife : MonoBehaviour
                 moveDirection = new Vector3(moveDirection.x, moveDirection.y + 0.75f, moveDirection.z);
                 hit.transform.gameObject.GetComponent<Rigidbody>().AddForce(moveDirection.normalized * 50f);
                 hit.transform.gameObject.GetComponent<Zombie>().zombieHealth -= knifeDamage;
-                Debug.Log(hit.transform.name + " : " + hit.transform.gameObject.GetComponent<Zombie>().zombieHealth);
             }
         }
     }

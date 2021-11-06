@@ -12,7 +12,6 @@ public class HealthKit : MonoBehaviour
             PlayerStats.playerHealth += heal;
             GameManager.audioSource.PlayOneShot(healSound);
             Destroy(this.gameObject);
-            Debug.Log("Heal");
         }
     }
 

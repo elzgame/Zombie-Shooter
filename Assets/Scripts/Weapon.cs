@@ -53,7 +53,6 @@ public class Weapon : MonoBehaviour
             else
             {
                 isCompleteEmptyAmmo = true;
-                Debug.Log("No ammo");
             }
         }
         if (isCompleteEmptyAmmo == true && weaponManager.weaponAmmoReload > 0)
@@ -67,7 +66,6 @@ public class Weapon : MonoBehaviour
 
     IEnumerator Reload()
     {
-        Debug.Log("Reloading....");
         changeWeaponButton.interactable = false;
         animator.SetBool("Reload", true);
         GameManager.audioSource.PlayOneShot(weaponReloadSound);
@@ -97,7 +95,6 @@ public class Weapon : MonoBehaviour
     public void ShootDone()
     {
         animator.SetBool("Shoot", false);
-        Debug.Log("Shooting!");
         RaycastHit hit;
         if (Physics.Raycast(playerCamera.transform.position, playerCamera.transform.forward, out hit))
         {
@@ -106,10 +103,8 @@ public class Weapon : MonoBehaviour
                 StartCoroutine(CrosshairHit());
                 moveDirection = hit.transform.gameObject.GetComponent<Rigidbody>().transform.position - transform.position;
                 moveDirection = new Vector3(moveDirection.x, moveDirection.y + 0.75f, moveDirection.z);
-                Debug.Log(moveDirection);
                 hit.transform.gameObject.GetComponent<Rigidbody>().AddForce(moveDirection.normalized * 50f);
                 hit.transform.gameObject.GetComponent<Zombie>().zombieHealth -= weaponDamage;
-                Debug.Log(hit.transform.name + " : " + hit.transform.gameObject.GetComponent<Zombie>().zombieHealth);
             }
         }
     }

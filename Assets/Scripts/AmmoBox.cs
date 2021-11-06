@@ -19,7 +19,6 @@ public class AmmoBox : MonoBehaviour
             weaponManager.weaponAmmoReload += ammo;
             GameManager.audioSource.PlayOneShot(ammoSound);
             Destroy(this.gameObject);
-            Debug.Log("Ammo Collected!");
         }
     }
 

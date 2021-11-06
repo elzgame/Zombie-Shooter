@@ -13,9 +13,6 @@ public class WeaponManager : MonoBehaviour
     public int weaponAmmoConstraint;
     public int weaponAmmoReload;
 
-
-
-    // Update is called once per frame
     void Update()
     {
         weaponAmmoText.text = weaponAmmoCurrent + " / " + weaponAmmoReload;

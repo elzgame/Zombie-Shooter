@@ -107,7 +107,6 @@ public class GameManager : MonoBehaviour
             yield return new WaitForSeconds(.2f);
             if (zombieCountLeft >= zombieWaveCount[waveCount - 1])
             {
-                Debug.Log("Stop spawn zombies in this wave");
                 isSpawning = false;
                 waveCountdown = nextWaveCountdown;
                 StopCoroutine(SpawnZombie());
