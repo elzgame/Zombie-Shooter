@@ -1,6 +1,6 @@
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class WeaponManager : MonoBehaviour
 {
@@ -8,12 +8,17 @@ public class WeaponManager : MonoBehaviour
     public bool isSwitching = false;
     public GameObject weapon;
     public GameObject knife;
+    public Text weaponAmmoText;
+    public int weaponAmmoCurrent;
+    public int weaponAmmoConstraint;
+    public int weaponAmmoReload;
 
 
 
     // Update is called once per frame
     void Update()
     {
+        weaponAmmoText.text = weaponAmmoCurrent + " / " + weaponAmmoReload;
         if (weaponUsed == 1 && isSwitching)
         {
             isSwitching = false;

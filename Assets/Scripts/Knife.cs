@@ -40,7 +40,6 @@ public class Knife : MonoBehaviour
     public void StabDone()
     {
         animator.SetBool("Stab", false);
-        Debug.Log("Stab Done!");
         RaycastHit hit;
         if (Physics.Raycast(playerCamera.transform.position, playerCamera.transform.forward, out hit, 1f))
         {
@@ -49,7 +48,6 @@ public class Knife : MonoBehaviour
                 StartCoroutine(CrosshairHit());
                 moveDirection = hit.transform.gameObject.GetComponent<Rigidbody>().transform.position - transform.position;
                 moveDirection = new Vector3(moveDirection.x, moveDirection.y + 0.75f, moveDirection.z);
-                Debug.Log(moveDirection);
                 hit.transform.gameObject.GetComponent<Rigidbody>().AddForce(moveDirection.normalized * 50f);
                 hit.transform.gameObject.GetComponent<Zombie>().zombieHealth -= knifeDamage;
                 Debug.Log(hit.transform.name + " : " + hit.transform.gameObject.GetComponent<Zombie>().zombieHealth);

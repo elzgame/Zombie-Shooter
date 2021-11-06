@@ -12,9 +12,11 @@ public class GameManager : MonoBehaviour
     public int[] zombieWaveCount;
     public Transform[] zombieSpawnPoint;
     public Transform[] healthKitSpawnPoint;
+    public Transform[] ammoBoxSpawnPoint;
     public GameObject zombiePrefabs;
     public Transform zombieParent;
     public Transform healthKitParent;
+    public Transform ammoBoxParent;
     [SerializeField]
     public static int zombieCountLeft;
     public int zombieCount;
@@ -24,6 +26,7 @@ public class GameManager : MonoBehaviour
     public GameObject gameOverPanel;
     public int nextWaveCountdown;
     public GameObject healthKitPrefab;
+    public GameObject ammoBoxPrefab;
 
     void Start()
     {
@@ -46,6 +49,7 @@ public class GameManager : MonoBehaviour
             zombieWaveCount = difficultyPrefs.hardZombieWaveCount;
         }
         StartCoroutine(SpawnHealthKit());
+        StartCoroutine(SpawnAmmoBox());
     }
 
     void Update()
@@ -116,11 +120,21 @@ public class GameManager : MonoBehaviour
     {
         while (true)
         {
-            yield return new WaitForSeconds(Random.Range(5, 60));
+            yield return new WaitForSeconds(Random.Range(20, 60));
             var spawnPoint = healthKitSpawnPoint[Random.Range(0, healthKitSpawnPoint.Length)];
-            var healthKit = Instantiate(zombiePrefabs, spawnPoint.position, Quaternion.identity);
+            var healthKit = Instantiate(healthKitPrefab, spawnPoint.position, Quaternion.identity);
             healthKit.transform.SetParent(healthKitParent);
-            Instantiate(healthKitPrefab, spawnPoint.position, Quaternion.identity);
+        }
+    }
+
+    IEnumerator SpawnAmmoBox()
+    {
+        while (true)
+        {
+            yield return new WaitForSeconds(Random.Range(10, 60));
+            var spawnPoint = ammoBoxSpawnPoint[Random.Range(0, ammoBoxSpawnPoint.Length)];
+            var ammoBox = Instantiate(ammoBoxPrefab, spawnPoint.position, Quaternion.identity);
+            ammoBox.transform.SetParent(ammoBoxParent);
         }
     }
 

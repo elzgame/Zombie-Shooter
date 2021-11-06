@@ -12,20 +12,19 @@ public class Weapon : MonoBehaviour
     public AudioClip weaponShootSound;
     public AudioClip weaponReloadSound;
     public bool isCanShoot = true;
-    public Text weaponAmmoText;
-    public int weaponAmmoCurrent;
-    public int weaponAmmoConstraint;
-    public int weaponAmmoReload;
     public float reloadTime;
     public GameObject crosshair;
     private Vector3 crosshairScale;
+    private bool isCompleteEmptyAmmo;
+    public WeaponManager weaponManager;
+    public Button changeWeaponButton;
 
 
     void Start()
     {
         weaponDamage = PlayerPrefs.GetInt("weaponDamage", 10);
         animator = GetComponent<Animator>();
-        weaponAmmoCurrent = weaponAmmoConstraint;
+        weaponManager.weaponAmmoCurrent = weaponManager.weaponAmmoConstraint;
         crosshairScale = crosshair.transform.localScale;
     }
 
@@ -41,23 +40,26 @@ public class Weapon : MonoBehaviour
 
     void Update()
     {
-        weaponAmmoText.text = weaponAmmoCurrent + " / " + weaponAmmoReload;
-        if (weaponAmmoCurrent <= 0)
-            weaponAmmoCurrent = 0;
-        if (weaponAmmoCurrent <= 0 && isCanShoot)
+        if (weaponManager.weaponAmmoCurrent <= 0)
+            weaponManager.weaponAmmoCurrent = 0;
+        if (weaponManager.weaponAmmoCurrent <= 0 && isCanShoot)
         {
             isCanShoot = false;
             // Reload
-            if (weaponAmmoReload > 0)
+            if (weaponManager.weaponAmmoReload > 0)
             {
-                // Can reload
                 StartCoroutine(Reload());
             }
             else
             {
-                // Can't reload
+                isCompleteEmptyAmmo = true;
                 Debug.Log("No ammo");
             }
+        }
+        if (isCompleteEmptyAmmo == true && weaponManager.weaponAmmoReload > 0)
+        {
+            isCanShoot = true;
+            isCompleteEmptyAmmo = false;
         }
     }
 
@@ -66,19 +68,30 @@ public class Weapon : MonoBehaviour
     IEnumerator Reload()
     {
         Debug.Log("Reloading....");
+        changeWeaponButton.interactable = false;
         animator.SetBool("Reload", true);
         GameManager.audioSource.PlayOneShot(weaponReloadSound);
         yield return new WaitForSeconds(reloadTime);
         animator.SetBool("Reload", false);
+        changeWeaponButton.interactable = true;
         isCanShoot = true;
-        weaponAmmoCurrent += weaponAmmoConstraint;
-        weaponAmmoReload -= weaponAmmoConstraint;
+        if (weaponManager.weaponAmmoReload < weaponManager.weaponAmmoConstraint)
+        {
+            weaponManager.weaponAmmoCurrent += weaponManager.weaponAmmoReload;
+            weaponManager.weaponAmmoReload = 0;
+        }
+        else if (weaponManager.weaponAmmoReload >= weaponManager.weaponAmmoConstraint)
+        {
+            weaponManager.weaponAmmoCurrent += weaponManager.weaponAmmoConstraint;
+            weaponManager.weaponAmmoReload -= weaponManager.weaponAmmoConstraint;
+        }
     }
+
 
     public void ShootStart()
     {
         GameManager.audioSource.PlayOneShot(weaponShootSound);
-        weaponAmmoCurrent--;
+        weaponManager.weaponAmmoCurrent--;
     }
 
     public void ShootDone()
