@@ -8756,13 +8756,14 @@ MonoBehaviour:
   zombieCount: 0
   gameOverPanel: {fileID: 1060412777}
   winPanel: {fileID: 22838229}
-  nextWaveCountdown: 1
+  nextWaveCountdown: 30
   healthKitPrefab: {fileID: 437291581811245333, guid: f7278c30cb5d3974aaae3bb0db74a6f7, type: 3}
   ammoBoxPrefab: {fileID: 4260781690762802608, guid: 23e81bc2bcb3d9b419b10a2e86281176, type: 3}
   pausePanel: {fileID: 602942815}
   soundClick: {fileID: 8300000, guid: 2a62da1dc270d204a89dd521381758fd, type: 3}
   soundDeath: {fileID: 8300000, guid: 31335ad76ae78f14aad53cd0a2def91d, type: 3}
   soundWin: {fileID: 8300000, guid: 1f8d8b3872034e7499e28dd452f5edf8, type: 3}
+  zombiePerWave: 0
 --- !u!114 &761937084
 MonoBehaviour:
   m_ObjectHideFlags: 0
